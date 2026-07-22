@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,700;0,800;1,700;1,800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-coral: var(--theme-accent-primary);
+  --color-rose-quartz: var(--theme-accent-secondary);
+  --color-charcoal: var(--theme-bg);
+  --color-slate-grey: var(--theme-panel);
+  --color-platinum: var(--theme-text-primary);
+
+  /* Theme-specific custom bindings mapped to our CSS variables */
+  --color-app-bg: var(--theme-bg);
+  --color-app-panel: var(--theme-panel);
+  --color-app-text: var(--theme-text-primary);
+  --color-app-subtext: var(--theme-text-secondary);
+  --color-app-accent: var(--theme-accent-primary);
+  --color-app-accent-hover: var(--theme-accent-primary-hover);
+  --color-app-pink: var(--theme-accent-secondary);
+  --color-app-border: var(--theme-border);
+  --color-app-input: var(--theme-input-bg);
+  --color-app-input-border: var(--theme-input-border);
+  --color-app-card: var(--theme-card);
+  --color-app-badge: var(--theme-badge-bg);
+  --color-app-text-on-accent: var(--theme-text-on-accent);
+  
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-heading: "Plus Jakarta Sans", "Inter", sans-serif;
+  --font-condensed: "Barlow Condensed", sans-serif;
+}
+
+body, html, p, span, li, a, label, input, textarea, select {
+  font-family: var(--font-sans) !important;
+  font-weight: 500 !important; /* Inter Medium */
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-heading) !important;
+  font-weight: 800 !important; /* Plus Jakarta Sans ExtraBold */
+}
+
+button, .font-btn {
+  font-family: var(--font-sans) !important;
+  font-weight: 600 !important; /* Inter SemiBold */
+}
+
+.font-mono, .dashboard-number {
+  font-family: var(--font-mono) !important;
+}
+
+.font-condensed {
+  font-family: var(--font-condensed) !important;
+  font-weight: 800 !important;
+  text-transform: uppercase;
+}
+
+/* Base definitions for Dark Theme */
+:root {
+  --theme-bg: #0B1220; /* Very deep dark space blue background */
+  --theme-panel: #111827; /* Rich deep secondary background */
+  --theme-panel-rgb: 17, 24, 39;
+  --theme-card: #1E293B; /* Slate-dark cards background */
+  --theme-text-primary: #F8FAFC; /* Crisp slate-white primary text */
+  --theme-text-secondary: #94A3B8; /* Muted cool-grey secondary text */
+  --theme-accent-primary: #3B82F6; /* Energetic Accent Blue */
+  --theme-accent-primary-hover: #2563EB;
+  --theme-accent-secondary: #6366F1; /* Dynamic Accent Indigo */
+  --theme-border: #334155; /* Slate boundary borders */
+  --theme-input-bg: rgba(17, 24, 39, 0.6); 
+  --theme-input-border: rgba(99, 102, 241, 0.25);
+  --theme-badge-bg: rgba(59, 130, 246, 0.15);
+  --theme-text-on-accent: #FFFFFF; /* White on badges/buttons */
+  --theme-hover: #1E293B;
+}
+
+/* Base definitions for Light Theme (User Specified Platinum Theme) */
+.light {
+  --theme-bg: #F8FAFC; /* Page Background */
+  --theme-panel: #FFFFFF; /* Sidebar Background, Navbar Background */
+  --theme-panel-rgb: 255, 255, 255;
+  --theme-card: #FFFFFF; /* Card Background */
+  --theme-text-primary: #0F172A; /* Primary Text */
+  --theme-text-secondary: #64748B; /* Secondary Text */
+  --theme-accent-primary: #1D4ED8; /* Solid high-contrast indigo blue */
+  --theme-accent-primary-hover: #1E40AF;
+  --theme-accent-secondary: #4338CA; 
+  --theme-border: #E2E8F0; /* Border */
+  --theme-input-bg: #FFFFFF; /* High contrast input background */
+  --theme-input-border: #CBD5E1; /* Muted grey boundary */
+  --theme-badge-bg: rgba(29, 78, 216, 0.1);
+  --theme-text-on-accent: #FFFFFF; /* White on interactive bounds */
+  --theme-hover: #F1F5F9; /* Hover */
+}
+
+/* Global scrollbars and aesthetic rendering rules */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--theme-accent-primary);
+  opacity: 0.4;
+  border-radius: 99px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Dynamic CSS interceptor layer for legacy / external classes consistency */
+.bg-\[\#050814\] {
+  background-color: var(--theme-bg) !important;
+}
+.bg-\[\#040713\] {
+  background-color: var(--theme-panel) !important;
+}
+.bg-\[\#060a18\]\/90 {
+  background-color: rgba(var(--theme-panel-rgb), 0.9) !important;
+}
+.bg-\[\#060a16\] {
+  background-color: var(--theme-card) !important;
+  color: var(--theme-text-primary) !important;
+}
+.bg-\[\#090f23\] {
+  background-color: var(--theme-input-bg) !important;
+  color: var(--theme-text-primary) !important;
+}
+.bg-gray-950\/60 {
+  background-color: rgba(var(--theme-panel-rgb), 0.6) !important;
+}
+.bg-gray-950 {
+  background-color: var(--theme-panel) !important;
+}
+.bg-\[\#0b162f\] {
+  background-color: var(--theme-badge-bg) !important;
+  color: var(--theme-accent-primary) !important;
+}
+.bg-\#0b162f {
+  background-color: var(--theme-badge-bg) !important;
+}
+.bg-\[\#081326\] {
+  background-color: var(--theme-badge-bg) !important;
+  color: var(--theme-accent-primary) !important;
+}
+.bg-\[\#110e21\] {
+  background-color: rgba(59, 130, 246, 0.12) !important;
+}
+.bg-light, .light .bg-app-bg {
+  background-color: var(--theme-bg) !important;
+}
+
+/* Dark mode bypass backgrounds for nested dashboards state panels */
+.bg-\[\#0c0d18\] {
+  background-color: var(--theme-card) !important;
+  border-color: var(--theme-border) !important;
+}
+
+/* Switcher option styling inside Select menus in Light Mode */
+.light select option {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+}
+
+/* Border interception layer */
+.border-cyan-500\/10,
+.border-cyan-500\/15,
+.border-cyan-500\/20,
+.border-purple-500\/14,
+.border-purple-500\/15,
+.border-purple-500\/20,
+.border-blue-500\/15,
+.border-pink-500\/15,
+.border-pink-500\/10,
+.border-\[\#22d3ee\]\/10,
+.border-\[\#22d3ee\]\/20,
+.border-\[\#a855f7\]\/15,
+.border-slate-800,
+.border-gray-800,
+.border-gray-900,
+.border-gray-850 {
+  border-color: var(--theme-border) !important;
+}
+
+/* Main Text overrides to uphold high accessibility and user setting */
+.text-\[\#d1d5db\] {
+  color: var(--theme-text-primary) !important;
+}
+.text-gray-400,
+.text-slate-400,
+.text-zinc-400,
+.text-neutral-400,
+.text-gray-500,
+.text-slate-500,
+.text-zinc-500 {
+  color: var(--theme-text-secondary) !important;
+}
+.text-gray-200,
+.text-slate-200,
+.text-slate-300,
+.text-gray-300,
+.text-[#9ca3af] {
+  color: var(--theme-text-primary) !important;
+}
+
+/* Explicit fallback selectors to bypass utility compilation anomalies */
+.text-app-text {
+  color: var(--theme-text-primary) !important;
+}
+.text-app-subtext {
+  color: var(--theme-text-secondary) !important;
+}
+.text-app-accent {
+  color: var(--theme-accent-primary) !important;
+}
+.text-app-pink {
+  color: var(--theme-accent-secondary) !important;
+}
+.bg-app-bg {
+  background-color: var(--theme-bg) !important;
+}
+.bg-app-panel {
+  background-color: var(--theme-panel) !important;
+}
+.bg-app-card {
+  background-color: var(--theme-card) !important;
+}
+
+/* Custom hover state mapping to ensure user-specified Platinum hover is respected universally */
+.hover\:bg-app-panel:hover,
+.hover\:bg-app-card:hover,
+.hover\:bg-slate-800:hover,
+.hover\:bg-slate-900:hover,
+.hover\:bg-gray-800:hover,
+.hover\:bg-gray-900:hover,
+.hover\:bg-gray-100:hover,
+.hover\:bg-slate-100:hover,
+.hover\:bg-cyan-950\/10:hover,
+.hover\:bg-purple-950\/20:hover {
+  background-color: var(--theme-hover) !important;
+}
+
+/* Accessibility: automatically map utility text-white elements to primary dark text in light mode */
+.light .text-white:not(#global-theme-toggle *):not(.theme-toggle *):not(button *):not(.bg-gradient-to-r *):not(.bg-gradient-to-tr *):not(.bg-red-800 *) {
+  color: var(--theme-text-primary) !important;
+}
+
+/* Ensure buttons, alerts and intentional dark backdrop containers maintain beautiful high-contrast text color */
+.light button .text-white,
+.light button.text-white,
+.light .bg-gradient-to-r .text-white,
+.light .bg-gradient-to-tr .text-white,
+.light .bg-cyan-500 .text-white,
+.light .bg-blue-600 .text-white,
+.light .bg-purple-600 .text-white,
+.light .bg-red-800 .text-white,
+.light [class*="bg-gradient"] .text-white,
+.light [class*="bg-gradient"] :is(span, p, h1, h2, h3, div),
+.light .bg-gray-950 .text-white {
+  color: #FFFFFF !important;
+}
+
+/* Cyan/Pink/Purple neon highlights mapped directly to Accent Blue & Accent Indigo palette */
+.text-cyan-400,
+.text-cyan-300,
+.text-cyan-500,
+.text-\[\#22d3ee\],
+.text-emerald-400,
+.text-emerald-500 {
+  color: var(--theme-accent-primary) !important;
+}
+.text-purple-400,
+.text-pink-400,
+.text-pink-300,
+.text-\[\#ec4899\],
+.text-\[\#a855f7\],
+.text-\[\#a855f7\] {
+  color: var(--theme-accent-secondary) !important;
+}
+
+/* Gradients */
+.from-cyan-500, .from-cyan-400 {
+  --tw-gradient-from: var(--theme-accent-primary) !important;
+  --tw-gradient-to: var(--theme-accent-secondary) !important;
+  --tw-gradient-stops: var(--theme-accent-primary), var(--theme-accent-secondary) !important;
+}
+.to-purple-600, .to-purple-500, .to-pink-600 {
+  --tw-gradient-to: var(--theme-accent-secondary) !important;
+}
+
+/* Limitless water-flow marquee scroll design */
+@keyframes waterFlow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-water-scroll {
+  display: flex;
+  width: max-content;
+  animation: waterFlow 40s linear infinite;
+}
+
+.animate-water-scroll:hover {
+  animation-play-state: paused;
+}
+
+.water-scroll-container {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent, white 12%, white 88%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, white 12%, white 88%, transparent);
+}
+
+/* Wavy Papercut Texture Styles matching the requested texture structure with subtle depths */
+.drop-shadow-wave {
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.15));
+}
+.light .drop-shadow-wave {
+  filter: drop-shadow(0 8px 12px rgba(148, 163, 184, 0.12));
+}
+
+.drop-shadow-wave-deep {
+  filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.25));
+}
+.light .drop-shadow-wave-deep {
+  filter: drop-shadow(0 16px 24px rgba(148, 163, 184, 0.18));
+}
+
+

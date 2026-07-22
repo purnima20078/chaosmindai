@@ -1,0 +1,6 @@
+{
+  "name": "ChaosMind AI",
+  "description": "Friendly AI computer helper to track performance and get smart advice easily",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
